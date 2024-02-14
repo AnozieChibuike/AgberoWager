@@ -11,7 +11,7 @@ from games.dice import roll
 computer = User(username="Computer", age=0, country="Nigeria")
 computer.balance += 2000
 def main():
-    'p'
+    pass
     # playGame(user,computer)
 
 def playGame(user1,user2):
