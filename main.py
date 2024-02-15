@@ -43,7 +43,7 @@ def playGame(user1,user2):
     winner = game.get_winner()
     if winner:
         winner.balance += (game.stake * 2) - (game.stake * 0.2)
-        typewrite(f'{user1.username} win')
+        typewrite(f'{winner.username} win')
     else:
         user1.balance += stake
         user2.balance += stake
