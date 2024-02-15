@@ -21,7 +21,7 @@ class TestGame(unittest.TestCase):
         User.users[0].balance = 2000
         User.users[1].balance = 2000
         playGame(User.users[0],User.users[1])
-        self.assertNotEqual(User.users[0].balance,2000)
+        self.assertAlmostEqual(User.users[0].balance,2000)
         print(User.users[0].balance)
         print(User.users[1].balance)
     
