@@ -32,7 +32,7 @@ class TestGame(unittest.TestCase):
         with self.assertRaises(InterruptedError):
             playGame(User.users[0],User.users[1])
             
-    @patch('builtins.input',side_effect=['20','yes','100','yes'])
+    @patch('builtins.input',side_effect=['20','100','yes'])
     def test_play_game_low_stake(self,mock):    
         User.users[0].balance = 2000
         User.users[1].balance = 2000
