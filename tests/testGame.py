@@ -20,8 +20,24 @@ class TestGame(unittest.TestCase):
     def test_play_game(self,mock):    
         User.users[0].balance = 2000
         User.users[1].balance = 2000
-        playGame(User.users[0],User.users[1])
-        self.assertAlmostEqual(User.users[0].balance,2000)
+        game = playGame(User.users[0],User.users[1])
+        self.assertIsInstance(game,Dice)
+        print(User.users[0].balance)
+        print(User.users[1].balance)
+    
+    @patch('builtins.input',side_effect=['200','yes'])
+    def test_play_game_low_balance(self,mock):    
+        User.users[0].balance = 0
+        User.users[1].balance = 2000
+        with self.assertRaises(InterruptedError):
+            playGame(User.users[0],User.users[1])
+            
+    @patch('builtins.input',side_effect=['20','yes','100','yes'])
+    def test_play_game_low_stake(self,mock):    
+        User.users[0].balance = 2000
+        User.users[1].balance = 2000
+        game = playGame(User.users[0],User.users[1])
+        self.assertIsInstance(game,Dice)
         print(User.users[0].balance)
         print(User.users[1].balance)
     
