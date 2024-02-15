@@ -42,12 +42,8 @@ def playGame(user1,user2):
     game.set_roll(user_roll, user2_roll)
     winner = game.get_winner()
     if winner:
-        if winner == user1:
-            user1.balance += (game.stake * 2) - (game.stake * 0.2)
-            typewrite(f'{user1.username} win')
-        else:
-            user2.balance += (game.stake * 2) - (game.stake * 0.2)
-            typewrite(f'{user2.username} win')
+        winner.balance += (game.stake * 2) - (game.stake * 0.2)
+        typewrite(f'{user1.username} win')
     else:
         user1.balance += stake
         user2.balance += stake
