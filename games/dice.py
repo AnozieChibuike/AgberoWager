@@ -11,14 +11,18 @@ import math
 load_dotenv()
 
 class Dice:
+    games = []
     def __init__(self,user1,user2,stake):
-        self.gameId = uuid.uuid4()
+        self.id = str(uuid.uuid4())
+        self.played = False
         self.user1 = user1
         self.user2 = user2
         self.stake = stake
+        Dice.games.append(self)
     def set_roll(self,user1_roll,user2_roll):
         self.roll1 = user1_roll
         self.roll2 = user2_roll
+        self.played = True
     def get_winner(self):
         if self.roll1 > self.roll2:
             winner = self.user1

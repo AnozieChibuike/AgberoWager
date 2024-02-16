@@ -18,7 +18,7 @@ class User:
             
     def __init__(self, **kwargs):
         try:
-            self.id = uuid4()
+            self.id = str(uuid4())
             self.balance = 0
             self.username = kwargs["username"]
             self.age = int(kwargs["age"])
