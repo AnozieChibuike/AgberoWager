@@ -8,13 +8,10 @@ class TestUserModel(unittest.TestCase):
     
     @patch('builtins.input',side_effect=['John','18','Nigeria'])
     def test_create_user(self,mock):
-        User.users = []
-        create_user()
-        self.assertEqual(len(User.users),1)
+        self.assertIsInstance(create_user(),dict)
         
     @patch('builtins.input',side_effect=['Johnny','12','Nigeria'])
     def test_create_user_incorrect(self,mock):
-        print(User.users)
         with self.assertRaises(PermissionError):
             create_user()
 
@@ -31,6 +28,18 @@ class TestUserModel(unittest.TestCase):
         user2 = User(username='Joelan',country='Nigeria',age=20,currency='Naira')
         self.assertListEqual([user,user2],User.users)
         
+    def test_create_user_from_dict(self):
+        User.users = []
+        user=User(from_dict={'username':'Joel','age':19,'country':'Naija'})
+        self.assertIn(user,User.users)
         
-if __name__ == '__main__':
-    unittest.main()
+    @patch('builtins.input',side_effect=['Johnny','18','Nigeria'])
+    def test_create_user_from_create_user_return_value(self,mock):
+        User.users = []
+        user=User(from_dict=create_user())
+        self.assertIn(user,User.users)
+        
+    def test_create_user_from_dict_error(self):
+        User.users = []
+        with self.assertRaises(KeyError):
+            User(from_dict={'age':19,'country':'Naija'})

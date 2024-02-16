@@ -24,6 +24,7 @@ def join_game(id,party):
 @sio.event
 def disconnect():
     print("I'm disconnected!")
+    
 
 if __name__ == '__main__':
     import time

@@ -19,8 +19,4 @@ def create_user():
             
     country = input('Country: ')
     currency = "Naira" if country.lower() == 'nigeria' else None
-    try:
-        a = User(username=username, age=age, country=country,currency=currency)
-    except Exception as e:
-        print(e)
-    return a
+    return {'username':username,'age':age,'country':country,'currency':currency}
