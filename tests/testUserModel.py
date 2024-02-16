@@ -43,3 +43,7 @@ class TestUserModel(unittest.TestCase):
         User.users = []
         with self.assertRaises(KeyError):
             User(from_dict={'age':19,'country':'Naija'})
+            
+    def test_create_user_from_dict_not_dict_param(self):
+        with self.assertRaises(TypeError):
+            User(from_dict='Jol')
